@@ -1,0 +1,35 @@
+class cypher_manager
+{
+string[] letters;
+string base_letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,x,y,z";
+cypher_manager()
+{
+this.letters = base_letters.split(",");
+}
+private string insure_letter(string value)
+{
+return value[0];
+}
+private int insure_index(int index)
+{
+if(index< letters.length())
+{
+return index;
+}
+int base = 25;
+int offset = index-base;
+return offset;
+}
+private int get_letter_pos(string letter)
+{
+string value = insure_letter(value);
+return letters.find(value);
+}
+private string shift_right(string letter,int amount)
+{
+string value = insure_letter(value);
+int index = letters.find(value);
+int new_index = index+amount;
+return insure_index(new_index);
+}
+}
