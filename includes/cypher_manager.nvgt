@@ -1,7 +1,7 @@
 class cypher_manager
 {
 string[] letters;
-string base_letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,x,y,z";
+string base_letters = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z";
 cypher_manager()
 {
 this.letters = base_letters.split(",");
@@ -30,6 +30,6 @@ private string shift_right(string letter,int amount)
 string value = insure_letter(value);
 int index = letters.find(value);
 int new_index = index+amount;
-return insure_index(new_index);
+return get_letter_pos(insure_index(new_index));
 }
 }
