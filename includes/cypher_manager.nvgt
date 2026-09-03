@@ -34,6 +34,25 @@ private int get_letter_pos(string letter)
 string value = insure_letter(value);
 return letters.find(value);
 }
+private string create_key(string key)
+{
+string final_key = key;
+for(int i = 0; i<key.length(); i++)
+{
+string part = key[i];
+if(part.is_digits())
+{
+int num = parse_int(part);
+if(num>26)
+{
+continue;
+}
+final_key.replace(part,get_letter_pos(num));
+}
+}
+
+return final_key;
+}
 private string shift_right(string letter,int amount)
 {
 string value = insure_letter(value);
