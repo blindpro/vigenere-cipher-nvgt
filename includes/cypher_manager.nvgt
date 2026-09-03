@@ -17,8 +17,17 @@ if(index< letters.length())
 return index;
 }
 int base = 25;
+if(index>0)
+{
 int offset = index-base;
 return offset;
+}
+if(index<0)
+{
+int offset = abs(index);
+return offset;
+}
+return index;
 }
 private int get_letter_pos(string letter)
 {
@@ -32,4 +41,12 @@ int index = letters.find(value);
 int new_index = index+amount;
 return get_letter_pos(insure_index(new_index));
 }
+private string shift_left(string letter, int amount)
+{
+string value = insure_letter(letter);
+int index = letters.find(value);
+int new_index = index-amount;
+return get_letter_pos(insure_index(new_index));
+}
+
 }
