@@ -12,20 +12,18 @@ return value[0];
 }
 private int insure_index(int index)
 {
-if(index< letters.length())
+if(index>0 and index< letters.length())
 {
 return index;
 }
-int base = 25;
 if(index>0)
 {
-int offset = index-base;
-return offset;
+return index%26;
 }
 if(index<0)
 {
-int offset = abs(index);
-return offset;
+int num = abs(index);
+return num%26;
 }
 return index;
 }
@@ -104,5 +102,23 @@ passes++;
 }
 return encrypted_message;
 }
+string decrypt(string message, string key)
+{
+string decrypted_message;
+int passes = 0;
+string main_key = get_final_key(key);
+for(int i = 0; i<message.length(); i++)
+{
+string part = message[i];
+if(part.is_digits())
+{
+part = letters[parse_int(part)];
+}
+string key_letter = get_key_value(main_key,passes);
+decrypted_message+shift_left(part,calculate_shift(key_letter));
+passes++;
+}
+return decrypted_message;
 
+}
 }
