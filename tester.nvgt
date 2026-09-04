@@ -1,0 +1,8 @@
+#include"includes/cypher_manager.nvgt"
+void main()
+{
+cypher_manager s;
+alert("test","encrypted: "+s.encrypt("a","b")+" decrypted: "+s.decrypt("b","b"));
+alert("test","encrypted: "+s.encrypt("a","d")+" decrypted: "+s.decrypt("d","d"));
+exit();
+}

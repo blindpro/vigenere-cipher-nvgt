@@ -98,7 +98,7 @@ if(part.is_digits())
 part = letters[parse_int(part)];
 }
 string key_letter = get_key_value(main_key,passes);
-encrypted_message+shift_right(part,calculate_shift(key_letter));
+encrypted_message+=shift_right(part,calculate_shift(key_letter));
 passes++;
 }
 return encrypted_message;
@@ -116,7 +116,7 @@ if(part.is_digits())
 part = letters[parse_int(part)];
 }
 string key_letter = get_key_value(main_key,passes);
-decrypted_message+shift_left(part,calculate_shift(key_letter));
+decrypted_message+=shift_left(part,calculate_shift(key_letter));
 passes++;
 }
 return decrypted_message;
