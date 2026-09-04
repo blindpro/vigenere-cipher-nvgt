@@ -64,9 +64,9 @@ else
 return key[passes%key.length()];
 }
 }
-private int calculate_shift(string letter,string shift_letter)
+private int calculate_shift(string shift_letter)
 {
-int index = get_letter_pos(letter)+get_letter_pos(shift_letter);
+int index = get_letter_pos(shift_letter);
 return index;
 }
 private string shift_right(string letter,int amount)
@@ -99,7 +99,7 @@ if(part.is_digits())
 part = letters[parse_int(part)];
 }
 string key_letter = get_key_value(main_key,passes);
-encrypted_message+shift_right(part,calculate_shift(part,key_letter));
+encrypted_message+shift_right(part,calculate_shift(key_letter));
 passes++;
 }
 return encrypted_message;
