@@ -31,10 +31,10 @@ return index;
 }
 private int get_letter_pos(string letter)
 {
-string value = insure_letter(value);
+string value = insure_letter(letter);
 return letters.find(value);
 }
-private string create_key(string key)
+private string get_final_key(string key)
 {
 string final_key = key;
 for(int i = 0; i<key.length(); i++)
@@ -47,25 +47,62 @@ if(num>26)
 {
 continue;
 }
-final_key.replace(part,get_letter_pos(num));
+final_key.replace(part,letters[get_letter_pos(num)]);
 }
 }
 
 return final_key;
 }
+private string get_key_value(string key, int passes)
+{
+if(passes < key.length())
+{
+return key[passes];
+}
+else
+{
+return key[passes%key.length()];
+}
+}
+private int calculate_shift(string letter,string shift_letter)
+{
+int index = get_letter_pos(letter)+get_letter_pos(shift_letter);
+return index;
+}
 private string shift_right(string letter,int amount)
 {
-string value = insure_letter(value);
+string value = insure_letter(letter);
 int index = letters.find(value);
 int new_index = index+amount;
-return get_letter_pos(insure_index(new_index));
+int final_index = insure_index(new_index);
+return letters[final_index];
 }
 private string shift_left(string letter, int amount)
 {
 string value = insure_letter(letter);
 int index = letters.find(value);
 int new_index = index-amount;
-return get_letter_pos(insure_index(new_index));
+int final_index = insure_index(new_index);
+return letters[final_index];
+}
+
+string  encrypt(string message, string key)
+{
+string encrypted_message;
+int passes = 0;
+string main_key = get_final_key(key);
+for(int i = 0; i<message.length(); i++)
+{
+string part = message[i];
+if(part.is_digits())
+{
+part = letters[parse_int(part)];
+}
+string key_letter = get_key_value(main_key,passes);
+encrypted_message+shift_right(part,calculate_shift(part,key_letter));
+passes++;
+}
+return encrypted_message;
 }
 
 }
