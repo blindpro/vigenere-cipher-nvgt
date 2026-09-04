@@ -23,7 +23,8 @@ return index%26;
 if(index<0)
 {
 int num = abs(index);
-return num%26;
+int diff = 26-num;
+return diff%26;
 }
 return index;
 }
